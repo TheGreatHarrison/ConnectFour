@@ -1,7 +1,4 @@
-// YourClass.h
-
-#ifndef Game
-#define Game
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -10,16 +7,13 @@
 
 class Game {
 public:
-    Game();
-    ~Game();
-
+    Game(int mode);
 
 private:
-    int currentPlayer;
-    char player1;
-    char player2;
-    Board board; // to be implmented
-    int gameMode;
+    char player1 = 'X';
+    char player2 = 'O';
+    //Board board; // to be implmented
+    int gameMode = 0;
 
 
     // Private member functions (optional)
@@ -35,4 +29,4 @@ private:
 
 };
 
-#endif // YOUR_CLASS_H
+#endif // Game
