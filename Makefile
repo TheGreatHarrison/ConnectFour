@@ -1,12 +1,12 @@
- Makefile for Connect 4
+# Makefile for Connect 4
 
 # Compiler and flags
-CXX = g++
-CXXFLAGS = -std=c++11 -Wall -g  # Use C++11, enable all warnings, include debug symbols
+CXX = clang++
+CXXFLAGS = -std=c++17 -Wall -g -I$(INCDIR)
 
 # Source and header files
 SRCDIR = src
-INCDIR = include
+INCDIR = inc
 BUILDDIR = build
 SOURCES = $(SRCDIR)/main.cpp $(SRCDIR)/Board.cpp $(SRCDIR)/Game.cpp
 HEADERS = $(INCDIR)/Board.h $(INCDIR)/Game.h
@@ -21,7 +21,13 @@ $(BUILDDIR):
 	mkdir -p $(BUILDDIR)
 
 # Compile object files
-$(BUILDDIR)/%.o: $(SRCDIR)/%.cpp $(INCDIR)/%.h | $(BUILDDIR) #Dependency on .h and build dir
+$(BUILDDIR)/main.o: $(SRCDIR)/main.cpp $(INCDIR)/Game.h | $(BUILDDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BUILDDIR)/Board.o: $(SRCDIR)/Board.cpp $(INCDIR)/Board.h | $(BUILDDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BUILDDIR)/Game.o: $(SRCDIR)/Game.cpp $(INCDIR)/Game.h | $(BUILDDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Link the object files to create the executable
@@ -32,5 +38,8 @@ $(BUILDDIR)/$(TARGET): $(OBJECTS)
 clean:
 	rm -rf $(BUILDDIR)/*
 
+info:
+	$(CXX) --version
+	
 # Phony targets (not actual files)
 .PHONY: all clean

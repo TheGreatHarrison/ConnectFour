@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "../inc/Game.h"
 
 // Constructor
 Game::Game(int mode) :
@@ -7,7 +7,6 @@ Game::Game(int mode) :
     std::cout << "Game constructed" << std::endl;
 }
 
-// Private member functions (optional)
 void Game::switchPlayer()
 {
 }
