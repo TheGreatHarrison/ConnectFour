@@ -10,6 +10,10 @@ Board::Board(int rows, int cols) :
 
 void Board::displayBoard()
 {
+    for(int i=1; i < cols+1; i++)
+    {
+        std::cout << " " << i;
+    }
 }
 
 void Board::makeMove(int col, char player)

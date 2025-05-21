@@ -15,7 +15,6 @@ private:
     //Board board; // to be implmented
     int gameMode = 0;
 
-
     // Private member functions (optional)
     void switchPlayer();
     void getValidMove();
@@ -28,5 +27,3 @@ private:
     void displayWinner();
 
 };
-
-#endif // Game
