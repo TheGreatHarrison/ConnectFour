@@ -4,26 +4,13 @@
 #include <string>
 #include <vector>
 
-
+// Game will handle the handle the pre and post game processes.
+// Game will call connect four to start the game.
 class Game {
 public:
-    Game(int mode);
+    Game();
 
 private:
-    char player1 = 'X';
-    char player2 = 'O';
-    //Board board; // to be implmented
-    int gameMode = 0;
 
-    // Private member functions (optional)
-    void switchPlayer();
-    void getValidMove();
-    void playTurn();
-    void computerMove();
-
-    // main game loop - calls playTurn untill winner is cound
-    void play();
-
-    void displayWinner();
 
 };

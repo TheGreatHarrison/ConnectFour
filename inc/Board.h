@@ -8,10 +8,13 @@ class Board {
 public:
     Board(int rows, int cols);
 
-    int rows;
-    int cols;
-    std::vector<std::vector<char>> board;
+    int rows = 6;
+    int cols = 7;
 
+    std::vector<char> boarder;
+    std::vector<std::vector<char>> gameBoard;
+
+    std::vector<std::vector<char>> fullBoard;
 
     void displayBoard();
 
