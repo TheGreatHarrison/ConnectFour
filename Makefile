@@ -8,8 +8,8 @@ CXXFLAGS = -std=c++17 -Wall -g -I$(INCDIR)
 SRCDIR = src
 INCDIR = inc
 BUILDDIR = build
-SOURCES = $(SRCDIR)/main.cpp $(SRCDIR)/Board.cpp $(SRCDIR)/Game.cpp
-HEADERS = $(INCDIR)/Board.h $(INCDIR)/Game.h
+SOURCES = $(SRCDIR)/main.cpp $(SRCDIR)/Board.cpp $(SRCDIR)/Game.cpp $(SRCDIR)/ConnectFour.cpp
+HEADERS = $(INCDIR)/Board.h $(INCDIR)/Game.h $(INCDIR)/ConnectFour.h
 OBJECTS = $(SOURCES:$(SRCDIR)/%.cpp=$(BUILDDIR)/%.o)  #  Important:  Object files in build/
 TARGET = ConnectFour
 
@@ -28,6 +28,9 @@ $(BUILDDIR)/Board.o: $(SRCDIR)/Board.cpp $(INCDIR)/Board.h | $(BUILDDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BUILDDIR)/Game.o: $(SRCDIR)/Game.cpp $(INCDIR)/Game.h | $(BUILDDIR)
+	$(CXX) $(CXXFLAGS) -c $< -o $@
+
+$(BUILDDIR)/ConnectFour.o: $(SRCDIR)/ConnectFour.cpp $(INCDIR)/ConnectFour.h | $(BUILDDIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Link the object files to create the executable
