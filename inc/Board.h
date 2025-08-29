@@ -11,12 +11,12 @@ public:
     int rows = 6;
     int cols = 7;
 
-    std::vector<char> boarder;
     std::vector<std::vector<char>> gameBoard;
+    std::vector<char> boarder;
 
-    std::vector<std::vector<char>> fullBoard;
+    std::vector<std::vector<char>> displayBoard;
 
-    void displayBoard();
+    void drawBoard();
 
     void makeMove(int col, char player);
 
