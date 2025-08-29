@@ -12,14 +12,17 @@ public:
     ConnectFour(int mode);
 
 private:
-    char player1 = 'X';
-    char player2 = 'O';
-    //Board board; // to be implmented
     int gameMode = 0;
+    Board gameBoard;
+    
+    char playerChar;
 
-    // Private member functions (optional)
-    void switchPlayer();
-    void getValidMove();
+    bool finished = false;
+
+    // Private member functions
+    char getPlayerChoice();
+    int getUserMove(int cols);
+    void getValidPlayerMove();
     void playTurn();
     void computerMove();
 

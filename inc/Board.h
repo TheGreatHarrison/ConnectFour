@@ -6,23 +6,21 @@
 
 class Board {
 public:
-    Board(int rows, int cols);
+    Board();
 
     int rows = 6;
     int cols = 7;
 
-    std::vector<std::vector<char>> gameBoard;
-    std::vector<char> boarder;
-
-    std::vector<std::vector<char>> displayBoard;
-
     void drawBoard();
 
     void makeMove(int col, char player);
+    bool isValidMove(int col);
 
 private:
 
-    void isValidMove();
+    std::vector<std::vector<char>> gameBoard;
+    std::vector<char> boarder;
+    std::vector<std::vector<char>> displayBoard;
 
     void checkWinner();
     

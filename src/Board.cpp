@@ -1,9 +1,7 @@
 #include "../inc/Board.h"
 
 // Constructor
-Board::Board(int rows, int cols) :
-    rows(rows),
-    cols(cols),
+Board::Board() :
     gameBoard(rows, std::vector<char>(cols, ' ')),
     boarder(cols, '|')
 {
@@ -61,7 +59,7 @@ void Board::makeMove(int col, char player)
     
 }
 
-void Board::isValidMove()
+bool Board::isValidMove(int col)
 {
 }
 
