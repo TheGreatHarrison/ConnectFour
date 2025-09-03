@@ -15,6 +15,7 @@ public:
 
     void makeMove(int col, char player);
     bool isValidMove(int col);
+    bool isBoardFull();
 
 private:
 
@@ -23,7 +24,5 @@ private:
     std::vector<std::vector<char>> displayBoard;
 
     void checkWinner();
-    
-    void isBoardFull();
 
 };

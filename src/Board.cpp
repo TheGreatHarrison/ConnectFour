@@ -56,17 +56,39 @@ void Board::drawBoard()
 
 void Board::makeMove(int col, char player)
 {
-    
+    int r = rows-1;
+    while(gameBoard[r][col] != ' ')
+    {
+        r--;
+    }
+    gameBoard[r][col] = player;
 }
+
 
 bool Board::isValidMove(int col)
 {
+    bool isValidMove = false;
+
+    if (gameBoard[0][col] == ' ')
+    {
+        isValidMove = true;
+    }
+
+    return isValidMove;
 }
 
 void Board::checkWinner()
 {
 }
 
-void Board::isBoardFull()
+bool Board::isBoardFull()
 {
+    for(int col = 0; col <= cols-1; col++)
+    {
+        if (gameBoard[0][col] == ' ')
+        {
+            return false;
+        }
+    }
+    return true;
 }

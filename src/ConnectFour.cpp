@@ -1,5 +1,6 @@
 #include "../inc/ConnectFour.h"
 #include "../inc/Board.h"
+#include <random>
 
 // Constructor
 ConnectFour::ConnectFour(int mode) :
@@ -16,14 +17,16 @@ char ConnectFour::getPlayerChoice()
     std::string input;
     while (true) 
     {
-        std::cout << "Choose your piece (x/o): ";
+        std::cout << "Choose your piece (X/O): ";
         std::cin >> input;
         if (input == "x" || input == "X") 
         {
+            pcChar = 'O';
             return 'X';
         }
         else if (input == "o" || input == "O") 
         {
+            pcChar = 'X';
             return 'O';
         }
         else 
@@ -41,7 +44,7 @@ int ConnectFour::getUserMove(int cols)
         std::cout << "Enter a column (1-" << cols << "): ";
         if (std::cin >> col) 
         {
-            if (col >= 1 && col <= cols && gameBoard.isValidMove(col))
+            if (col >= 1 && col <= cols && gameBoard.isValidMove(col-1))
             {
                 return col - 1; // zero-based index
             }
@@ -60,7 +63,7 @@ int ConnectFour::getUserMove(int cols)
     }
 }
 
-void ConnectFour::getValidPlayerMove()
+void ConnectFour::playerMove()
 {
     int usersMove = getUserMove(gameBoard.cols);
     gameBoard.makeMove(usersMove, playerChar);
@@ -68,24 +71,54 @@ void ConnectFour::getValidPlayerMove()
 
 void ConnectFour::computerMove()
 {
+        // Create a random device and generator
+    std::random_device rd;
+    std::mt19937 gen(rd()); // Mersenne Twister RNG
+    std::uniform_int_distribution<> dist(0, 6); // Range 1 to 7
+    int randomMove = dist(gen);
+
+    while(!gameBoard.isValidMove(randomMove))
+    {
+        randomMove = dist(gen);
+    }
+
+    gameBoard.makeMove(randomMove, pcChar);
 }
 
 void ConnectFour::playTurn()
 {
+    gameBoard.drawBoard();
+    playerMove();
+    computerMove();
 }
 
 // main game loop - calls play until winner is found
 void ConnectFour::play()
 {
-    while(!finished)
+    GameResult result = GameResult::PlayerWon;
+
+    while(!finished && !gameBoard.isBoardFull())
     {
-        gameBoard.drawBoard();
-        getValidPlayerMove();
-        gameBoard.drawBoard();
-        computerMove();
+        playTurn();
     }
+
+    displayWinner(result);
 }
 
-void ConnectFour::displayWinner()
+void ConnectFour::displayWinner(GameResult res)
 {
+    gameBoard.drawBoard();
+    
+    switch (res) 
+    {
+        case GameResult::PlayerWon:
+            std::cout << "You Won!!!" << std::endl;
+            break;
+        case GameResult::PcWon:
+            std::cout << "You Lost!!!" << std::endl;
+            break;
+        case GameResult::Draw:
+            std::cout << "It's a draw!" << std::endl;
+            break;
+    }
 }

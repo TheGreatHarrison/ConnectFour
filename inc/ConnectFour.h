@@ -16,19 +16,26 @@ private:
     Board gameBoard;
     
     char playerChar;
+    char pcChar;
 
     bool finished = false;
+
+    enum class GameResult
+    {
+        PlayerWon,
+        PcWon,
+        Draw
+    };
 
     // Private member functions
     char getPlayerChoice();
     int getUserMove(int cols);
-    void getValidPlayerMove();
+    void playerMove();
     void playTurn();
     void computerMove();
 
     // main game loop - calls playTurn untill winner is cound
     void play();
 
-    void displayWinner();
-
+    void displayWinner(GameResult res);
 };
