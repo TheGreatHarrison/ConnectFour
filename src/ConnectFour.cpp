@@ -85,6 +85,8 @@ void ConnectFour::computerMove()
     gameBoard.makeMove(randomMove, pcChar);
 }
 
+// One game "loop"
+// Will draw the board and one round of turns.
 void ConnectFour::playTurn()
 {
     gameBoard.drawBoard();
@@ -92,7 +94,7 @@ void ConnectFour::playTurn()
     computerMove();
 }
 
-// main game loop - calls play until winner is found
+// main game loop - calls play until winner is found or the board is full. 
 void ConnectFour::play()
 {
     GameResult result = GameResult::PlayerWon;
@@ -108,7 +110,7 @@ void ConnectFour::play()
 void ConnectFour::displayWinner(GameResult res)
 {
     gameBoard.drawBoard();
-    
+
     switch (res) 
     {
         case GameResult::PlayerWon:
